@@ -31,5 +31,11 @@ namespace GraphQL_NorthwindExample.Api.Repositories
             var products = await _dbContext.Product.Where(p => supplierIds.Contains(p.SupplierId)).ToListAsync();
             return products.ToLookup(o => o.SupplierId);
         }
+        public async Task<Product> AddProduct(Product product)
+        {
+            _dbContext.Product.Add(product);
+            await _dbContext.SaveChangesAsync();
+            return product;
+        }
     }
 }

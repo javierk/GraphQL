@@ -8,6 +8,7 @@ namespace GraphQL_NorthwindExample.Api.GraphQL
         public NorthwindSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<NorthwindQuery>();
+            Mutation = resolver.Resolve<NorthwindMutation>();
         }
     }
 }
