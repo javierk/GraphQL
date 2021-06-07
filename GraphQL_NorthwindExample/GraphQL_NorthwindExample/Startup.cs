@@ -7,6 +7,7 @@ using GraphQL_NorthwindExample.Api.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,8 +29,8 @@ namespace GraphQL_NorthwindExample.Api.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<NorthwindDbContext>(options =>
-                options.UseSqlServer(_config["ConnectionStrings:Northwind"]));
+
+            services.AddDbContext<NorthwindDbContext>(options => options.UseSqlite("DataSource=Northwind.db"));
 
             services.AddScoped<CustomerRepository>();
             services.AddScoped<OrderRepository>();
