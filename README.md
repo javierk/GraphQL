@@ -6,6 +6,7 @@ using .net core 2.1, entity framework core  with local sqlite DB and graphql.net
 
 **Example Queries using variables, aliases and fragments**
 
+``` json
 query AllSuppliersWithProducts
 {
  suppliersProducts: suppliers{... Supplierfields}
@@ -72,22 +73,31 @@ fragment Supplierfields on SupplierType
     unitPrice
 	}
 }
+```
 
 *Query Variables*
+
+``` json
 {
   "supplierId": 9002
 }
+```
+
 
 **Example Mutation**
 
+``` json
 mutation($product:productInput!){
   createProduct(product: $product){
     id,
     productName
   }
 }
+```
 
 *Query Variables*
+
+``` json
 {
   "product": {
     "productName": "test product",
@@ -95,5 +105,6 @@ mutation($product:productInput!){
     "isDiscontinued": false
   }
 }
+```
 
 after executing the mutation to add a product, the supplierById for 9002 will also return this new product
